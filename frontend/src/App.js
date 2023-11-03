@@ -1,44 +1,13 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './Components/Header';
-import Budget from "./Components/Budget";
-import Remain from "./Components/Remain";
-import ExpenseTot from "./Components/ExpenseTot";
-import ExpenseList from "./Components/ExpenseList";
-import AddExpenseForm from "./Components/AddExpenseForm";
+import './App.css';
 
 const App = () => {
   return (
-    <div className="container">
-      <Header />
-      <div className="row mt-3">
-        <div className="col-sm">
-          <Budget />
-        </div>
-
-        <div className="col-sm">
-          <Remain />
-        </div>
-
-        <div className="col-sm">
-          <ExpenseTot />
-        </div>
+    <div className="App">
+      <div className="container mx-auto max-w-6xl text-center drop-shadow-lg">
+        <h1 className="text-4xl py-8 mb-10 bg-slate-800 text-zinc-200 rounded">Expense Tracker</h1>
       </div>
-
-      <h3 className="mt-5">Expenses</h3>
-
-      <div className="row mt-3">
-        <div className="col-sm">
-          <ExpenseList />
-        </div>
-      </div>
-
-      <h3 className="mt-5">Add Expense</h3>
-      <div className="mt-5">
-        <div className="col-sm">
-          <AddExpenseForm />
-        </div>
-      </div>
+      
     </div>
   )
 };
