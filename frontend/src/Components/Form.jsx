@@ -1,6 +1,6 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
-
+import Transaction from './Transaction';
 
 export default function Form() {
 
@@ -36,6 +36,8 @@ export default function Form() {
                     </div>
                 </div>    
             </form>  
+
+            <Transaction></Transaction>
         </div>
     )
 }
