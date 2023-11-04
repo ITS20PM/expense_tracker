@@ -1,6 +1,7 @@
 import React from 'react';
 import {Chart, ArcElement} from 'chart.js';
 import {Doughnut} from 'react-chartjs-2';
+import Label from "./Label";
 
 Chart.register(ArcElement);
 
@@ -24,7 +25,7 @@ const config = {
   }
 };
 
-export default function () {
+export default function Data() {
   return (
     <div>
         <div className="flex justify-content max-w-xs mx-auto">
@@ -36,7 +37,9 @@ export default function () {
                     </h3>
                 </div>
 
-                <div className="flex flex-col py-10 gap-6"></div>
+                <div className="flex flex-col py-10 gap-6">
+                  <Label></Label>
+                </div>
             </div>
         </div>
     </div>
