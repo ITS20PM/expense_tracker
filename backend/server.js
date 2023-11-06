@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
-require('dotenv').config({path: "./config.env"})
+require('dotenv').config({path: "./config.env"});
 const port = process.env.PORT || 5000;
 
 // middleware
@@ -10,12 +10,12 @@ app.use(cors());
 app.use(express.json());
 
 //mongoDB connection
-const connection = require('./db/connection.js');
+const con = require('./db/connection.js');
 
 // using routes
 app.use(require('./routes/route'));
 
-connection.then(db => {
+con.then(db => {
     if (!db)
         return process.exit(1);
 
@@ -28,3 +28,5 @@ connection.then(db => {
 }).catch(error => {
     console.log(`connection failed...! ${error}`);
 })
+
+
