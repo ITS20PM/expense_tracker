@@ -3,9 +3,9 @@ const controller = require('../controller/controller');
 
 
 routes.route('/api/categories')
-    .get(controller.create_cat);
+    .post(controller.create_categories)
+    .get(controller.get_categories)
 
 
 
 module.exports = routes;
-
