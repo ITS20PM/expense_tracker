@@ -7,7 +7,6 @@ async function create_categories(req, res) {
         type:"Food",
         color:"#1F3B5C"
     })
-    
 
     await Create.save(function(err){
         if(!err) 
@@ -38,7 +37,7 @@ async function create_transaction(req, res) {
         date:new Date()
     });
 
-    res.send(create);
+    // res.send(create);
 
     create.save(function(err){
         if(!err)
@@ -49,8 +48,48 @@ async function create_transaction(req, res) {
 
 }
 
+async function get_transaction(req, res) {
+    let data = await model.Transaction.find({});
+
+    return res.json(data);
+}
+
+async function delete_transaction(req, res) {
+    if (!req.body)
+        res.status(400).json({message: "Request body not found"});
+
+    await model.Transaction.deleteOne(req.body, function(err){
+        if (!err)
+            res.json("Record Deleted");
+    }).clone().catch(function(err){res.json("Error while deleting transaction record")});
+}
+
+async function get_labels(req, res) {
+    model.Transaction.aggregate([
+        {
+            $lookup: {
+                from: "categories",
+                localField: "type",
+                foreignField: "type",
+                as: "categories_info"
+            }
+        },
+        {
+            $unwind: "$categories_info"
+        }
+    ]).then(result => {
+        let data = result.map(v => Object.assign({}, { _id: v._id, name: v.name, type: v.type, amount: v.amount, color: v.categories_info['color']}));
+        res.json(data);
+    }).catch(error => {
+        res.status(400).json("Lookup Collection Error");
+    })
+}
+
 module.exports = {
     create_categories,
     get_categories,
-    create_transaction
+    create_transaction,
+    get_transaction,
+    delete_transaction,
+    get_labels
 }
